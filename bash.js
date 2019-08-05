@@ -12,14 +12,19 @@ process.stdin.on('data', data => {
   let string = cmd.split(' ');
 
   if (cmd === 'pwd') pwdFunction();
-  if (cmd === 'ls') lsFunction(fs);
+  if (cmd === 'ls') lsFunction(done);
 
   if (string[0] === 'cat') {
     catFunction(fs, string[1]);
   }
-  if (string[0] === 'curl'){
+  if (string[0] === 'curl') {
     curlFunction(string[1]);
   }
 
   //process.stdout.write('You typed: ' + cmd);
 });
+
+const done = output => {
+  process.stdout.write(output);
+  process.stdout.write('\nprompt >');
+};
